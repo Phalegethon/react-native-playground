@@ -1,0 +1,226 @@
+/* eslint-disable flowtype/require-parameter-type */
+/* eslint-disable flowtype/require-return-type */
+import React from "react";
+{{#if config.isReactNative}}
+import {
+  View,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  Keyboard,
+  LayoutAnimation
+} from "react-native";
+{{/if}}
+import PropTypes from "prop-types";
+import { Field, reduxForm } from "redux-form";
+import { createFormAction } from 'redux-form-saga';
+import _ from "lodash";
+
+import { Validation } from "{{ config.paths.kitFolder }}helpers";
+import { Button, Alert } from "{{ config.paths.kitFolder }}ui";
+import { Col, Row } from "{{ config.paths.kitFolder }}grid";
+import {
+  InputField,
+  SelectField,
+  TextAreaField,
+  Checkbox,
+  Radio,
+  FileInput
+} from "{{ config.paths.kitFolder }}form";
+
+
+const constantPrefix = "##form/{{ constantCase type }}/{{ constantCase name }}";
+const formAction = createFormAction(constantPrefix);
+
+const {{ properCase name }}FormComponent = (props: Object) => {
+
+  const {
+    handleSubmit,
+    // initialValues,
+    // pristine,
+    // invalid,
+    // valid,
+    submitting,
+    // anyTouched,
+    // dirty,
+    // pure,
+    submitFailed,
+    submitSucceeded,
+    asyncValidating,
+    // initialized,
+    fields: {
+      inputFieldSample,
+      selectboxField,
+      checkboxFieldSample,
+      radioFieldSample,
+      textAreaFieldSample
+    },
+    errors,
+    formObject
+  } = props;
+
+
+  return (
+
+    <form
+      className="form-style"
+      id="form-{{ dashCase name }}"
+      name="{{ camelCase type }}{{ properCase name }}Form"
+      onSubmit={handleSubmit(formAction)}
+      noValidate>
+
+      <Field
+        name="inputFieldSample"
+        id="input-field-sample"
+        component={InputField}
+        minLength="9"
+        maxLength="9"
+        autoComplete="off"
+        validate={[
+          Validation.required,
+          (val) => Validation.pattern(val, /^([0-9]{9})$/)
+        ]}
+        placeholder="Type your Mobile Number"
+        type="tel"
+        required
+        help="help text"
+        label="Mobile Number"
+        {...inputFieldSample} />
+
+      <Field
+        name="selectboxField"
+        id="selectbox-field"
+        component={SelectField}
+        placeholder="Select a option"
+        validate={[
+          Validation.required
+        ]}
+        options={[
+          {
+            id: 1,
+            description: "Option 1",
+            value: "Option 1"
+          },
+          {
+            id: 2,
+            description: "Option 2",
+            value: "Option 2"
+          }
+        ]}
+        type="text"
+        required
+        label="Options Label"
+        {...selectboxField} />
+
+      <Field
+        name="checkboxFieldSample"
+        component={Checkbox}
+        id="checkbox-field-sample"
+        validate={[
+          Validation.required
+        ]}
+        type="checkbox"
+        required
+        value="fdslkfsd"
+        label="I accept the Terms and conditions."
+        {...checkboxFieldSample} />
+
+      <Field
+        name="radioFieldSample"
+        id="radio-field-sample"
+        component={Radio}
+        placeholder="placeholdeeeer"
+        type="radio"
+        validate={[
+          Validation.required
+        ]}
+        label="Select Gender"
+        required
+        items={[
+          {
+            value: 0,
+            label: "Man"
+          },
+          {
+            value: 1,
+            label: "Woman"
+          }
+        ]}
+        {...radioFieldSample} />
+
+      <Field
+        name="textAreaFieldSample"
+        id="text-area-field-sample"
+        component={TextAreaField}
+        className="resize-vertical"
+        autoComplete="off"
+        rows="10"
+        validate={[
+          Validation.required
+        ]}
+        placeholder="Message"
+        required
+        label="Message"
+        {...textAreaFieldSample} />
+
+
+
+
+        {submitFailed && (_.size(errors) > 0 || _.keys(_.get(formObject, "syncErrors")).length > 0) &&
+          <Col sm={12}>
+            <Alert theme="danger" items={errors}>
+              {_.keys(formObject.syncErrors).length} input field has error
+          </Alert>
+          </Col>
+            }
+
+        <div className="form-group">
+          <Button
+            theme="smalt"
+            disabled={submitting || asyncValidating}
+            loading={submitting || asyncValidating}
+            block>
+              SUBMIT
+          </Button>
+        </div>
+
+    </form>
+  );
+
+};
+
+
+{{ properCase name }}FormComponent.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  pristine: PropTypes.bool.isRequired,
+  submitting: PropTypes.bool.isRequired,
+  fields: PropTypes.array.isRequired,
+  invalid: PropTypes.bool.isRequired,
+  valid: PropTypes.bool.isRequired,
+  initialValues: PropTypes.object,
+  anyTouched: PropTypes.bool.isRequired,
+  dirty: PropTypes.bool.isRequired,
+  pure: PropTypes.bool.isRequired,
+  submitFailed: PropTypes.bool.isRequired,
+  submitSucceeded: PropTypes.bool.isRequired,
+  initialized: PropTypes.bool.isRequired,
+  asyncValidating: PropTypes.any.isRequired,
+  formObject: PropTypes.object,
+  errors: PropTypes.array
+};
+
+
+const {{ properCase name }}Form = reduxForm({
+  form: "{{ camelCase type }}{{ properCase name }}Form",
+  fields: [
+    "inputFieldSample",
+    "selectboxField",
+    "checkboxFieldSample",
+    "radioFieldSample",
+    "textAreaFieldSample"
+  ]
+})({{ properCase name }}FormComponent);
+
+export default {{ properCase name }}Form;

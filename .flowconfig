@@ -1,0 +1,33 @@
+
+[include]
+src/*.js
+
+
+[ignore]
+<PROJECT_ROOT>/node_modules/.*
+<PROJECT_ROOT>/tools/.*
+<PROJECT_ROOT>/typings/.*
+<PROJECT_ROOT>/.vscode/.*
+<PROJECT_ROOT>/flow-typed/.*
+<PROJECT_ROOT>/tools/.*
+<PROJECT_ROOT>/generators/.*
+<PROJECT_ROOT>/src/index.js
+src/myk/.*
+.*/.*.test.js
+.*/.*css
+.*/.*scss
+
+
+[libs]
+./flow-typed
+./flow-typed/npm
+
+
+[options]
+module.file_ext=.css
+module.file_ext=.scss
+module.name_mapper='.+\.s?css' -> 'empty/object'
+module.name_mapper='.*\(.scss\)' -> 'CSSModule'
+experimental.strict_type_args=false
+all=true
+

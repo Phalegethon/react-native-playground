@@ -1,0 +1,62 @@
+/*
+ * SAGA NAME CONVENTION: camelCase
+ * <NOUN><VERB>
+ * RequestStart
+*/
+/* eslint-disable flowtype/require-return-type */
+
+import { put, call, take, select, cancel, fork, takeLatest, throttle, takeEvery} from "redux-saga/effects";
+import { delay } from "redux-saga";
+{{#if config.isReactNative}}
+{{else}}
+import { push } from "react-router-redux";
+import routesObject from "../../routesObject";
+{{/if}}
+
+
+
+import {{ constantCase name }} from "./{{ properCase name }}.constants";
+// import * as {{ camelCase name }}Actions from "./{{ properCase name }}.actions";
+
+
+function* {{ camelCase name }}Flow() {
+  console.log("{{ constantCase name }} init");
+}
+
+export default function* sagaWatcher() {
+  {{#if config.isReactNative}}
+  yield [
+    fork({{ camelCase name }}Flow)
+  ];
+  {{else}}
+  let forkedTasks;
+  const {{ camelCase name }}Paths = [
+    routesObject.{{ camelCase name }}.url
+  ];
+  while (true) {
+    const {
+      type,
+      payload: {
+        params
+      }
+    } = yield take(
+      _.map({{ camelCase name }}Paths, (path: string) =>
+        `##route-enter:${path}`
+      )
+    );
+    yield _.map(forkedTasks, (task: Object) => cancel(task));
+    forkedTasks = yield [
+      fork({{ camelCase name }}Flow)
+    ];
+    yield take(
+      _.map({{ camelCase name }}Paths, (path: string) =>
+        `##route-exit:${path}`
+      )
+    );
+    yield _.map(forkedTasks, (task: Object) => cancel(task));
+    yield put({
+      type:{{ constantCase name }}.DESTROY
+    });
+  }
+  {{/if}}
+}

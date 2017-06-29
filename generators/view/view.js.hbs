@@ -1,0 +1,23 @@
+/* eslint-disable flowtype/require-parameter-type */
+/* eslint-disable flowtype/require-return-type */
+import React from "react";
+import PropTypes from "prop-types";
+
+{{#if wantStyles}}
+require("./{{ properCase type }}.{{ properCase name }}.styles.scss");
+{{/if}}
+
+const {{ properCase name }} = (props, context) => {
+  return (
+    <p>{{ properCase name }}</p>
+  );
+};
+
+
+{{ properCase name }}.propTypes = {
+};
+
+{{ properCase name }}.contextTypes = {
+};
+
+export default {{ properCase name }};

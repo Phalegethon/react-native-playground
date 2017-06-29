@@ -1,0 +1,30 @@
+/*
+ * REDUCER NAME CONVENTION: camelCase
+ * <container>Reducer
+ * {{ camelCase name }}Reducer
+*/
+
+import {{ constantCase name }} from "./{{ properCase name }}.constants";
+
+const initialState = {};
+
+const {{ camelCase name }}Reducer = (state: Object = initialState, action: Object) => {
+
+  switch (action.type) {
+
+    // ### GENERATED-REDUCER ###
+
+
+
+    case {{ constantCase name }}.DESTROY:
+      return initialState;
+
+    default:
+      return state;
+
+  }
+
+};
+
+
+export default {{ camelCase name }}Reducer;

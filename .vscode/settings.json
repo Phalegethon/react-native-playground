@@ -1,0 +1,29 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+  "javascript.validate.enable": false,
+  "path-intellisense.mappings": {
+    "~": "${workspaceRoot}/",
+    "src": "${workspaceRoot}/src"
+  },
+  "editor.formatOnSave": false,
+  "vsicons.presets.angular": false,
+  "react-native": {
+    "packager": {
+      "port": 8081
+    }
+  },
+      "files.exclude": {
+        "**/node_modules/": true,
+        "android": true,
+        "ios": true,
+        ".history": true,
+        "**/myk-tools/lib/": true,
+        "**/.sass-cache/": true,
+        "**/bower_components/": true,
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/npm-debug.log*": true,
+        "**/.DS_Store": true
+      }
+}

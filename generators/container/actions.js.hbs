@@ -1,0 +1,25 @@
+/* eslint-disable flowtype/require-parameter-type */
+/*
+ * ACTION NAME CONVENTION
+ * <noun><Verb/Adj>
+ * requestStart
+*/
+
+import {{ constantCase name }} from "./{{ properCase name }}.constants";
+
+{{#if config.flowTypeDefinitions}}
+import type {
+  // ### IMPORTED-TYPE ###
+  TestType
+} from "./{{ properCase name }}.flow-types";
+{{/if}}
+
+
+// ### GENERATED-ACTION ###
+
+
+export const testAction = (): TestType => {
+  return {
+    type: {{constantCase name}}.TEST
+  };
+};
