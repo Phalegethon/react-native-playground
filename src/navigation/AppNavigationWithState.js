@@ -5,6 +5,7 @@ import { addNavigationHelpers } from "react-navigation";
 
 import AppNavigator from "./AppNavigator.js";
 
+
 const AppWithNavigationState = ({ dispatch, nav }) => (
   <AppNavigator
     navigation={addNavigationHelpers({

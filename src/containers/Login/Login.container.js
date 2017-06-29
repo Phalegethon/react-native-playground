@@ -26,14 +26,15 @@ import styles from "./Login.styles.js";
 class Login extends Component {
 
   static navigationOptions = ({ navigation }) => ({
-    title: Login,
+    headerMode: "screen",
+    title: "Login",
     headerRight: null,
     headerLeft: null
   });
 
-
   constructor(props, context) {
     super(props, context);
+    console.log("props ", props);
   }
 
   // componentWillMount() {}
@@ -46,7 +47,19 @@ class Login extends Component {
 
   render() {
     return (
-      <Text>Login</Text>
+      <View>
+        <Text>Login 123123123123 1312312 3123</Text>
+        <Text>Login 123123123123 1312312 3123</Text>
+        <Text>Login 123123123123 1312312 3123</Text>
+        <Text>Login 123123123123 1312312 3123</Text>
+        <Text>Login 123123123123 1312312 3123</Text>
+        <Text>Login 123123123123 1312312 3123</Text>
+        <Text>Login 123123123123 1312312 3123</Text>
+        <Text>Login 123123123123 1312312 3123</Text>
+        <Text>Login 123123123123 1312312 3123</Text>
+        <Text>Login 123123123123 1312312 3123</Text>
+        <Text>Login 123123123123 1312312 3123</Text>
+      </View>
     );
   }
 }

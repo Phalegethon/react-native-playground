@@ -6,7 +6,7 @@ import AppNavigator from "../navigation/AppNavigator.js";
 
 // Start with two routes: The Main screen, with the Login screen on top.
 const initialState = AppNavigator.router.getStateForAction(
-  AppNavigator.router.getActionForPathAndParams("Launch")
+  AppNavigator.router.getActionForPathAndParams("Login")
 );
 
 
