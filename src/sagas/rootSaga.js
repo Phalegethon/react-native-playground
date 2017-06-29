@@ -7,6 +7,7 @@ import appInitSaga from "./appInitSaga.js";
 
 
 // ### IMPORTED-SAGA ###
+import loginSaga from "../containers/Login/Login.saga";
 import launchSaga from "../containers/Launch/Launch.saga";
 
 
@@ -21,6 +22,7 @@ export default function* rootSaga() {
     yield [
       fork(formActionSaga),
       // ### INJECTED-SAGA ###
+      fork(loginSaga),
       fork(launchSaga),
       fork(init)
     ];
